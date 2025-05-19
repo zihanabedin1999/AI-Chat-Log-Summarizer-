@@ -1,0 +1,78 @@
+Task: AI Chat Log Summarizer 
+Project Description: 
+AI Chat Log Summarizer is a Python-based tool that reads .txt chat logs between 
+a user and an AI, parses the conversation, and produces a simple summary 
+including message counts and frequently used keywords. 
+This project showcases basic NLP capabilities using Python, with an optional 
+TF-IDF-based keyword extraction. 
+Requirements: 
+1. 
+2. 
+Input: 
+1.1. A .txt file that contains a chat between a user and an AI, formatted like 
+this: 
+User: Hi, can you tell me about Python? 
+AI: Sure! Python is a popular programming language known for 
+its readability. 
+User: What can I use it for? 
+AI: You can use Python for web development, data analysis, 
+AI, and more. 
+What your script should do: 
+2.1. Chat Log Parsing 
+■ Separate messages by speaker (User: and AI:). 
+■ Store messages in appropriate structures for further analysis. 
+2.2. 
+Message Statistics 
+■ Count total messages. 
+■ Count messages from User vs. AI. 
+Qtec Solution Limited 
+House: 23 (2nd & 3rd Floor), Road 04,  
+Nikunja 2, Dhaka    
+Phone: +880 1313-522828   
+Web: www.QtecSolution.com  
+Fb: www.fb.com/QtecSolution  
+In: https://bit.ly/2MUQBt1  
+2.3. 
+2.4. 
+3. 
+Keyword Analysis 
+■ Extract the top 5 most frequently used words. 
+■ Exclude common stop words (e.g., "the", "is", "and"). 
+Generate Summary 
+Output a clear summary that includes: 
+■ Total number of exchanges. 
+■ Nature of the conversation (based on keyword topics). 
+■ Most common keywords. 
+■ Example of a basic summary like: 
+Summary: - The conversation had 15 exchanges. - The user asked mainly about Python and its uses. - Most common keywords: Python, use, data, AI, language. 
+Bonus (Optional): 
+3.1. 
+Use a simple TF-IDF approach or nltk library for better keyword 
+extraction. 
+3.2. 
+Allow summarization of multiple chat logs from a folder. 
+Sample Chat Log: chat.txt 
+User: Hello! 
+AI: Hi! How can I assist you today? 
+User: Can you explain what machine learning is? 
+AI: Certainly! Machine learning is a field of AI that allows systems to 
+learn from data. 
+Qtec Solution Limited 
+House: 23 (2nd & 3rd Floor), Road 04,  
+Nikunja 2, Dhaka    
+Phone: +880 1313-522828   
+Web: www.QtecSolution.com  
+Fb: www.fb.com/QtecSolution  
+In: https://bit.ly/2MUQBt1  
+Submission Instructions: 
+● Commit your code to your GitHub repository from the initial setup. 
+● Make the repository public and share the GitHub URL with us for evaluation. 
+● Include a README.md that: 
+○ Clearly explains the project 
+○ Shows how to run it 
+○ Includes screenshots or sample outputs (if possible) 
+● Avoid pushing everything all at once after finishing the task. We’ll be 
+reviewing your commit history to understand your thought process, 
+problem-solving approach, and code structure. 
+● Partial progress is okay. 
+Even if you can’t complete all the features, submit wh

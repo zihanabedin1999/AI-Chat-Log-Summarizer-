@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0"><i class="fas fa-file-alt me-2"></i>Upload Chat Log</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="fas fa-comments fa-4x mb-3 text-primary"></i>
+                    <h4>AI Chat Log Summarizer</h4>
+                    <p class="lead">Upload your chat log file to generate a summary of the conversation including message counts and frequently used keywords.</p>
+                </div>
+
+                <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data" class="mb-4">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Select Chat Log File (.txt)</label>
+                        <input class="form-control" type="file" id="file" name="file" accept=".txt" required>
+                        <div class="form-text">Upload a text file containing a chat between a user and an AI.</div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-analyze me-2"></i>Analyze Chat Log
+                        </button>
+                    </div>
+                </form>
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Expected Format</h5>
+                    </div>
+                    <div class="card-body">
+                        <pre class="bg-dark p-3 rounded"><code>User: Hi, can you tell me about Python?
+AI: Sure! Python is a popular programming language known for its readability.
+User: What can I use it for?
+AI: You can use Python for web development, data analysis, AI, and more.</code></pre>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p>Don't have a file? <a href="{{ url_for('sample') }}" class="text-decoration-none">Try our sample chat log</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0"><i class="fas fa-info-circle me-2"></i>About This Tool</h3>
+            </div>
+            <div class="card-body">
+                <h5>What does this tool do?</h5>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Parses chat logs separating User and AI messages</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Counts total messages and exchanges</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Extracts the top 5 most frequently used keywords</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Determines the nature of the conversation</li>
+                    <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Generates a clear, concise summary</li>
+                </ul>
+                
+                <h5>Features</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title"><i class="fas fa-cogs text-primary me-2"></i>Advanced Keyword Extraction</h6>
+                                <p class="card-text">Uses TF-IDF to identify the most important words in the conversation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title"><i class="fas fa-filter text-primary me-2"></i>Stop Word Filtering</h6>
+                                <p class="card-text">Automatically filters common words to focus on meaningful content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

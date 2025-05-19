@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="fas fa-cogs me-2"></i>How It Works: AI Chat Log Summarizer</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <p>The AI Chat Log Summarizer is a tool that analyzes conversation logs between users and AI systems, providing insights and statistical summaries with just a few clicks.</p>
+                    </div>
+                    
+                    <h4 class="mt-4 border-bottom pb-2">Processing Pipeline</h4>
+                    
+                    <div class="mt-4">
+                        <h5 id="parsing" class="d-flex align-items-center">
+                            <span class="badge bg-primary me-2">1</span> Chat Log Parsing
+                        </h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>When you upload a chat log file, our system:</p>
+                                <ul>
+                                    <li><strong>Separates messages by speaker</strong> (User: and AI:) using advanced pattern matching</li>
+                                    <li><strong>Preserves the context and structure</strong> of multi-line messages</li>
+                                    <li><strong>Stores messages in appropriate data structures</strong> for further analysis (separate lists for user and AI messages)</li>
+                                </ul>
+                                
+                                <div class="border p-3 mt-3 bg-dark">
+                                    <h6>Sample Code Snippet:</h6>
+                                    <pre><code>def parse_chat_log(content):
+    # Split into lines
+    lines = content.strip().split('\n')
+    
+    # Initialize pattern matchers for speakers
+    user_pattern = re.compile(r'^User:\s*(.*?)$', re.IGNORECASE)
+    ai_pattern = re.compile(r'^AI:\s*(.*?)$', re.IGNORECASE)
+    
+    # Initialize message containers
+    user_messages = []
+    ai_messages = []
+    
+    # [Processing logic...]
+    
+    return user_messages, ai_messages, all_messages</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5 id="statistics" class="d-flex align-items-center">
+                            <span class="badge bg-primary me-2">2</span> Message Statistics
+                        </h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>Our system calculates key metrics about the conversation:</p>
+                                <ul>
+                                    <li><strong>Total messages</strong> in the entire conversation</li>
+                                    <li><strong>Message counts by speaker</strong> (how many from User vs. AI)</li>
+                                    <li><strong>Number of exchanges</strong> (back-and-forth interactions)</li>
+                                </ul>
+                                
+                                <div class="row mt-3">
+                                    <div class="col-md-4">
+                                        <div class="card text-center bg-light">
+                                            <div class="card-body">
+                                                <i class="fas fa-comments fa-2x text-primary mb-2"></i>
+                                                <h5>Total Messages</h5>
+                                                <p class="text-muted">Sum of all user and AI messages</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card text-center bg-light">
+                                            <div class="card-body">
+                                                <i class="fas fa-user fa-2x text-success mb-2"></i>
+                                                <h5>User Messages</h5>
+                                                <p class="text-muted">Count of messages from the user</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card text-center bg-light">
+                                            <div class="card-body">
+                                                <i class="fas fa-robot fa-2x text-info mb-2"></i>
+                                                <h5>AI Messages</h5>
+                                                <p class="text-muted">Count of responses from the AI</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5 id="keywords" class="d-flex align-items-center">
+                            <span class="badge bg-primary me-2">3</span> Keyword Analysis
+                        </h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>The system performs sophisticated text analysis to extract meaningful insights:</p>
+                                <ul>
+                                    <li><strong>Extracts the top 5 most frequently used words</strong> using TF-IDF (Term Frequency-Inverse Document Frequency)</li>
+                                    <li><strong>Automatically excludes common stop words</strong> such as "the", "is", "and", etc.</li>
+                                    <li><strong>Identifies key topics</strong> in the conversation</li>
+                                </ul>
+                                
+                                <div class="border p-3 mt-3 bg-dark">
+                                    <h6>About TF-IDF Analysis:</h6>
+                                    <pre><code>def extract_keywords_tfidf(user_messages, ai_messages):
+    # Combine all messages
+    all_messages = user_messages + ai_messages
+    
+    # Create a TF-IDF vectorizer
+    tfidf_vectorizer = TfidfVectorizer(
+        stop_words=list(stop_words),
+        min_df=1,
+        max_df=0.9,
+        ngram_range=(1, 1),
+        token_pattern=r'\b\w+\b'
+    )
+    
+    # Fit and transform the messages
+    tfidf_matrix = tfidf_vectorizer.fit_transform(all_messages)
+    
+    # Get feature names and calculate scores
+    # [Processing logic...]
+    
+    return [word for word, score in top_keywords]</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5 id="summary" class="d-flex align-items-center">
+                            <span class="badge bg-primary me-2">4</span> Generate Summary
+                        </h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>Finally, the system compiles all the data into a comprehensive summary:</p>
+                                <ul>
+                                    <li><strong>Total number of exchanges</strong> in the conversation</li>
+                                    <li><strong>Nature of the conversation</strong> based on the extracted keywords</li>
+                                    <li><strong>List of the most common keywords</strong> found in the chat</li>
+                                </ul>
+                                
+                                <div class="alert alert-success mt-3">
+                                    <h6>Example Summary:</h6>
+                                    <p><strong>Summary:</strong></p>
+                                    <ul>
+                                        <li>The conversation had 15 exchanges.</li>
+                                        <li>The conversation primarily focused on Python, programming, data analysis, and machine learning.</li>
+                                        <li>Most common keywords: Python, machine learning, data, programming, functions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">
+                            <i class="fas fa-upload me-2"></i>Try It Yourself
+                        </a>
+                        <a href="{{ url_for('sample') }}" class="btn btn-success ms-2">
+                            <i class="fas fa-flask me-2"></i>View Sample Analysis
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

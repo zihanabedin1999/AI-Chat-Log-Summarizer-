@@ -1,0 +1,55 @@
+2.1. Chat Log Parsing 
+■ Separate messages by speaker (User: and AI:). 
+■ Store messages in appropriate structures for further analysis. 
+2.2. 
+Message Statistics 
+■ Count total messages. 
+■ Count messages from User vs. AI. 
+Qtec Solution Limited 
+House: 23 (2nd & 3rd Floor), Road 04,  
+Nikunja 2, Dhaka    
+Phone: +880 1313-522828   
+Web: www.QtecSolution.com  
+Fb: www.fb.com/QtecSolution  
+In: https://bit.ly/2MUQBt1  
+2.3. 
+2.4. 
+3. 
+Keyword Analysis 
+■ Extract the top 5 most frequently used words. 
+■ Exclude common stop words (e.g., "the", "is", "and"). 
+Generate Summary 
+Output a clear summary that includes: 
+■ Total number of exchanges. 
+■ Nature of the conversation (based on keyword topics). 
+■ Most common keywords. 
+■ Example of a basic summary like: 
+Summary: - The conversation had 15 exchanges. - The user asked mainly about Python and its uses. - Most common keywords: Python, use, data, AI, language. 
+Bonus (Optional): 
+3.1. 
+Use a simple TF-IDF approach or nltk library for better keyword 
+extraction. 
+3.2. 
+Allow summarization of multiple chat logs from a folder. 
+Sample Chat Log: chat.txt 
+User: Hello! 
+AI: Hi! How can I assist you today? 
+User: Can you explain what machine learning is? 
+AI: Certainly! Machine learning is a field of AI that allows systems to 
+learn from data. 
+Qtec Solution Limited 
+House: 23 (2nd & 3rd Floor), Road 04,  
+Nikunja 2, Dhaka    
+Phone: +880 1313-522828   
+Web: www.QtecSolution.com  
+Fb: www.fb.com/QtecSolution  
+In: https://bit.ly/2MUQBt1  
+Submission Instructions: 
+● Commit your code to your GitHub repository from the initial setup. 
+● Make the repository public and share the GitHub URL with us for evaluation. 
+● Include a README.md that: 
+○ Clearly explains the project 
+○ Shows how to run it 
+○ Includes screenshots or sample outputs (if possible) 
+● Avoid pushing everything all at once after finishing the task. We’ll be 
+reviewing your commit history to understand your thought process,

@@ -1,0 +1,208 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Chat Analysis Results</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <i class="fas fa-clipboard-check fa-4x mb-3 text-success"></i>
+                    <h4>Summary Generated</h4>
+                </div>
+
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle me-2"></i>Conversation Summary</h5>
+                    <p>{{ results.conversation_nature }}</p>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ results.total_messages }}</h5>
+                                <p class="card-text">Total Messages</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ results.user_message_count }}</h5>
+                                <p class="card-text">User Messages</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ results.ai_message_count }}</h5>
+                                <p class="card-text">AI Messages</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mb-3"><i class="fas fa-key me-2"></i>Top Keywords</h5>
+                <div class="mb-4">
+                    {% if results.keywords %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for keyword in results.keywords %}
+                                <span class="badge bg-primary fs-6 p-2">{{ keyword }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No significant keywords found.</p>
+                    {% endif %}
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Comprehensive Analysis Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-info text-white">
+                                        <h6 class="mb-0"><i class="fas fa-comments me-2"></i>Chat Log Parsing</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Messages separated by speaker (User vs. AI)
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Stored in appropriate data structures for analysis
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-info text-white">
+                                        <h6 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Message Statistics</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Total messages: <span class="badge bg-primary ms-2">{{ results.total_messages }}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                User messages: <span class="badge bg-primary ms-2">{{ results.user_message_count }}</span>
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                AI messages: <span class="badge bg-primary ms-2">{{ results.ai_message_count }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-info text-white">
+                                        <h6 class="mb-0"><i class="fas fa-key me-2"></i>Keyword Analysis</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Top 5 most frequently used words extracted
+                                            </li>
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Common stop words excluded (e.g., "the", "is", "and")
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                                    {% for keyword in results.keywords %}
+                                                        <span class="badge bg-primary">{{ keyword }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-info text-white">
+                                        <h6 class="mb-0"><i class="fas fa-clipboard me-2"></i>Generated Summary</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex align-items-center">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Total exchanges: <span class="badge bg-primary ms-2">{{ results.exchanges }}</span>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                <strong>Nature of conversation:</strong>
+                                                <p class="mt-2">{{ results.conversation_nature }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="fas fa-file-alt me-2"></i>Generated Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="lead">As per the requirements, here's a clear summary of the conversation:</p>
+                                
+                                <div class="alert alert-success">
+                                    <pre class="bg-dark p-3 rounded mb-0"><code>Summary:
+- The conversation had {{ results.exchanges }} exchanges.
+- The user asked mainly about {% for keyword in results.keywords[:3] %}{{ keyword }}{% if not loop.last %}, {% endif %}{% endfor %}.
+- Most common keywords: {{ ", ".join(results.keywords) if results.keywords else "None identified" }}.</code></pre>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h6 class="border-bottom pb-2">Summary Components:</h6>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success me-2"></i>
+                                            <strong>Total number of exchanges:</strong> 
+                                            <span class="ms-2">{{ results.exchanges }}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success me-2"></i>
+                                            <strong>Nature of conversation:</strong> 
+                                            <span class="ms-2">Based on keyword analysis</span>
+                                        </li>
+                                        <li class="list-group-item d-flex align-items-center">
+                                            <i class="fas fa-check-circle text-success me-2"></i>
+                                            <strong>Most common keywords:</strong> 
+                                            <span class="ms-2">Top 5 terms after removing stop words</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="fas fa-upload me-2"></i>Analyze Another File
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

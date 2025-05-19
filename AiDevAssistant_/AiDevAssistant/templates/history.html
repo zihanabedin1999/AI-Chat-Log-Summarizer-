@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0"><i class="fas fa-history me-2"></i>Analysis History</h3>
+                </div>
+                <div class="card-body">
+                    {% if analyses %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>Showing your previous chat log analyses. Click on any to view details.
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Filename</th>
+                                        <th>Messages</th>
+                                        <th>Keywords</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for analysis in analyses %}
+                                    <tr class="clickable-row" data-href="{{ url_for('results', id=analysis.id) }}">
+                                        <td>{{ analysis.formatted_date }}</td>
+                                        <td>{{ analysis.filename }}</td>
+                                        <td>{{ analysis.total_messages }} ({{ analysis.user_message_count }} user, {{ analysis.ai_message_count }} AI)</td>
+                                        <td>
+                                            <div class="d-flex flex-wrap gap-1">
+                                                {% for keyword in analysis.keywords %}
+                                                    <span class="badge bg-primary">{{ keyword.word }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>You haven't analyzed any chat logs yet.
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('index') }}" class="btn btn-primary">
+                                <i class="fas fa-upload me-2"></i>Upload a Chat Log
+                            </a>
+                            <a href="{{ url_for('sample') }}" class="btn btn-success ms-2">
+                                <i class="fas fa-flask me-2"></i>Try Sample Analysis
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Make table rows clickable
+    const rows = document.querySelectorAll('.clickable-row');
+    rows.forEach(row => {
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
+        });
+        
+        // Add hover styling
+        row.classList.add('cursor-pointer');
+    });
+});
+</script>
+{% endblock %}
